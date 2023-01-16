@@ -6,7 +6,7 @@
 #    By: hael-mou <hael-mou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/03 07:53:28 by hael-mou          #+#    #+#              #
-#    Updated: 2023/01/11 13:14:00 by hael-mou         ###   ########.fr        #
+#    Updated: 2023/01/16 12:26:22 by hael-mou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ CYAN		= \033[0;96m
 WHITE		= \033[0;97m
 
 # files:
-SRC_FILES	= pipex pipex_commadpath pipex_split_command pipex_files pipex_error
+SRC_FILES	= pipex pipex_commadpath pipex_split_command pipex_files pipex_execute pipex_error\
+				heredoc pipex_clean
 SRC			= $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ			= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
@@ -55,6 +56,8 @@ $(NAME): $(OBJ)
 
 $(OBJF):
 	@mkdir -p $(OBJ_DIR)
+
+bonus: re
 
 clean:
 	@make clean -C libft/

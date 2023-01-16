@@ -6,7 +6,7 @@
 /*   By: hael-mou <hael-mou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 08:13:18 by hael-mou          #+#    #+#             */
-/*   Updated: 2023/01/10 10:03:21 by hael-mou         ###   ########.fr       */
+/*   Updated: 2023/01/13 20:14:44 by hael-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*getpath_from_env(char **env)
 {
 	while (env && *env && !ft_strnstr(*env, "PATH=", 5))
 		env++;
-	if (!env || !*env || !env[0][5])
+	if (!env || !*env)
 		return (PATH);
 	return (*env + 5);
 }
@@ -25,42 +25,24 @@ char	*whereis_command(char *command, char *path)
 {
 	int		pathlen;
 	char	*command_location;
+	int		isfound;
 
-	command_location = NULL;
-	while (path && *path && !command_location)
+	while (command && path && *path)
 	{
-		pathlen = path_length(path);
-		command_location = check_command_existence(command, path, pathlen);
+		pathlen = 0;
+		while (path[pathlen] && path[pathlen] != ':')
+			pathlen++;
+		command_location = join_command_path(command, path, pathlen);
+		isfound = access(command_location, F_OK);
+		if (isfound == F_OK)
+			return (command_location);
+		free(command_location);
 		if (path[pathlen] == ':')
 			pathlen++;
 		path += pathlen;
 	}
-	free(command);
-	return (command_location);
-}
-
-int	path_length(char *path)
-{
-	int	pathlen;
-
-	pathlen = 0;
-	while (path[pathlen] && path[pathlen] != ':')
-		pathlen++;
-	return (pathlen);
-}
-
-char	*check_command_existence(char *command, char *path, int pathlen)
-{
-	char	*command_location;
-	int		found;
-
-	if (!pathlen)
-		return (NULL);
-	command_location = join_command_path(command, path, pathlen);
-	found = access(command_location, F_OK);
-	if (found == F_OK)
-		return (command_location);
-	free(command_location);
+	if (!path && access(command, F_OK) == F_OK)
+		return (ft_strdup(command));
 	return (NULL);
 }
 
