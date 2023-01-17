@@ -25,14 +25,14 @@ void	ft_error(int fd, t_command *command)
 	if (!command->path)
 	{
 		ft_putstr_fd("pipex: ", 2);
-		ft_putstr_fd(command->argument[0], 2);
+		ft_putstr_fd(command->arg[0], 2);
 		ft_putstr_fd(": command not found\n", 2);
 		exit(127);
 	}
 	if (!command->isexecutable)
 	{
 		ft_putstr_fd("pipex: ", 2);
-		ft_putstr_fd(command->argument[0], 2);
+		ft_putstr_fd(command->arg[0], 2);
 		ft_putstr_fd(": Permission denied\n", 2);
 		exit(126);
 	}

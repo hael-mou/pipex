@@ -21,7 +21,7 @@ void	execute_cmd(t_command *cmd, int *pipes, t_files *files, char **env)
 		ft_heredoc(pipes, files->limiter);
 	io_command(cmd, pipes, files);
 	close_pipes(pipes);
-	execve(cmd->path, cmd->argument, env);
+	execve(cmd->path, cmd->arg, env);
 	clean_all(cmd, files, pipes, YES);
 }
 

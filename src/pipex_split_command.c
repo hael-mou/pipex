@@ -26,13 +26,13 @@ t_command	*split_all_cmd(int ncmd, char **argument, char *path, int isherdoc)
 	{
 		cmd[id].id = -1;
 		cmd[id].isexecutable = NO;
-		cmd[id].argument = split_command(argument[id]);
-		if (!cmd[id].argument)
+		cmd[id].arg = split_command(argument[id]);
+		if (!cmd[id].arg)
 			clean_all(cmd, NULL, NULL, NO);
-		if (cmd[id].argument[0][0] != '.' && !ft_strchr(cmd[id].argument[0], '/'))
-			cmd[id].path = whereis_command(cmd[id].argument[0], path);
+		if (cmd[id].arg[0][0] != '.' && !ft_strchr(cmd[id].arg[0], '/'))
+			cmd[id].path = whereis_command(cmd[id].arg[0], path);
 		else
-			cmd[id].path = whereis_command(cmd[id].argument[0], NULL);
+			cmd[id].path = whereis_command(cmd[id].arg[0], NULL);
 		if (cmd[id].path)
 			cmd[id].isexecutable = !access(cmd[id].path, X_OK);
 		cmd[id].id = id;

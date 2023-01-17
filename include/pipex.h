@@ -43,7 +43,7 @@ typedef struct s_command
 {
 	int		id;
 	pid_t	pid;
-	char	**argument;
+	char	**arg;
 	char	*path;
 	int		isexecutable;
 	int		exit_status;

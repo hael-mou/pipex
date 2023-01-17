@@ -15,7 +15,6 @@
 void	clean_all(t_command *command, t_files *files, int *pipes, int isexit)
 {
 	int	i;
-	int	j;
 
 	i = 0;
 	if (files && files->isheredoc)
@@ -26,9 +25,8 @@ void	clean_all(t_command *command, t_files *files, int *pipes, int isexit)
 		free(pipes);
 	while (command && command[i].id != -1)
 	{
-		j = 0;
 		free(command[i].path);
-		free_argument(command[i].argument);
+		free_argument(command[i].arg);
 		i++;
 	}
 	free(command);

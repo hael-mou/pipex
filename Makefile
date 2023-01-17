@@ -6,7 +6,7 @@
 #    By: hael-mou <hael-mou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/03 07:53:28 by hael-mou          #+#    #+#              #
-#    Updated: 2023/01/16 12:26:22 by hael-mou         ###   ########.fr        #
+#    Updated: 2023/01/17 12:51:16 by hael-mou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ $(NAME): $(OBJ)
 $(OBJF):
 	@mkdir -p $(OBJ_DIR)
 
-bonus: re
+bonus: fclean all
 
 clean:
 	@make clean -C libft/
